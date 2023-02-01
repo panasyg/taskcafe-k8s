@@ -13,4 +13,4 @@ Requirements:
 
 / kubectl port-forward --address=0.0.0.0 service/taskcafe-lb 3333:3333 &
 
-http://your-vm-ip(or just localhost if locally):3333/
+ #http://your-vm-ip(or just localhost if locally):3333/
