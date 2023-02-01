@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: taskcafe-app
+spec:
+  replicas: 5
+  selector:
+    matchLabels:
+      app: taskcafe
+  template:
+    metadata:
+      labels:
+        app: taskcafe
+    spec:
+      initContainers:
+      - name: check-psql-ready
+        image: postgres:9.6.5
+        command: ['sh', '-c',
+          'until pg_isready -h postgres-service -p 5432;
+          do echo waiting for database; sleep 2; done;']
+        name: check-redis-ready
+        image: goodsmileduck/redis-cli
+        imagePullPolicy: IfNotPresent
+        command: [ 'sh', '-c',
+          'until redis-cli -h redis-service.default.svc.cluster.local -p 6379  get hello;
+          do echo "Sleeping a bit"; sleep 1; done; echo "ready!"; ' ]
+      containers:
+      - name: taskcafe
+        image: panasyg/taskcafe:v1
+        volumeMounts:
+        - name: taskcafe-config
+          mountPath: "/root/app-config/"
+          readOnly: true
+        command: ['sh', '-c',
+          '/root/taskcafe web --config /root/app-config/taskcafe-config.toml']
+        imagePullPolicy: "IfNotPresent"
+        ports:
+          - containerPort: 3333
+      volumes:
+      - name: taskcafe-config
+        configMap:
+          name: taskcafe-config

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postgres-config
+  labels:
+    app: postgres
+data:
+  POSTGRES_DB: taskcafe
+  POSTGRES_USER: taskcafe
+  POSTGRES_PASSWORD: taskcafe_test
