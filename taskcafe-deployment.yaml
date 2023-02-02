@@ -32,7 +32,8 @@ spec:
           mountPath: "/root/app-config/"
           readOnly: true
         command: ['sh', '-c',
-          '/root/taskcafe web --config /root/app-config/taskcafe-config.toml']
+          '/root/taskcafe migrate --config /root/app-config/taskcafe-config.toml && 
+          /root/taskcafe web --config /root/app-config/taskcafe-config.toml' ]
         imagePullPolicy: "IfNotPresent"
         ports:
           - containerPort: 3333
