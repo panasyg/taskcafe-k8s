@@ -27,7 +27,7 @@ spec:
       containers:
       - name: taskcafe
         image: panasyg/taskcafe:latest
-        imagePullPolicy: IfNotPresent
+        imagePullPolicy: Always
         volumeMounts:
         - name: taskcafe-config
           mountPath: "/root/app-config/"
