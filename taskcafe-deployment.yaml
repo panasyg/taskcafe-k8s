@@ -15,8 +15,9 @@ spec:
       initContainers:
       - name: check-psql-ready
         image: postgres:9.6.5
+        imagePullPolicy: IfNotPresent
         command: ['sh', '-c',
-          'until pg_isready -h postgres-service -p 5432;
+          'until pg_isready -h postgres-service.default.svc.cluster.local -p 5432;
           do echo waiting for database; sleep 2; done;']
         name: check-redis-ready
         image: goodsmileduck/redis-cli
