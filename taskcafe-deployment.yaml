@@ -26,7 +26,7 @@ spec:
           do echo "Sleeping a bit"; sleep 1; done; echo "ready!"; ' ]
       containers:
       - name: taskcafe
-        image: panasyg/taskcafe:{{IMAGEVERSION}}
+        image: "{{IMAGEVERSION}}"
         imagePullPolicy: Always
         volumeMounts:
         - name: taskcafe-config
