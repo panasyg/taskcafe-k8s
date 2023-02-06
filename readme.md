@@ -2,8 +2,11 @@
 K8s(minikube) setup for https://github.com/panasyg/taskcafe
 
 Requirements:
+
 -Linux OS
+
 -Installed: firewalld, kubernetes(minikube), git, daemonize.
+
 
 / git clone https://github.com/panasyg/taskcafe-k8s.git && cd taskcafe-k8s
 
